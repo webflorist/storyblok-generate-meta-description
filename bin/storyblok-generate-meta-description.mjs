@@ -46,7 +46,7 @@ OPTIONS
   --only-stories <stories>       Comma seperated list of the full-slugs of stories you want to limit processing to.
                                  (e.g. --only-stories "about-us")
   --model <model>                OpenAI model to use. Defaults to 'gpt-4o-mini'.
-  --max-tokens <number>          Maximum tokens to use per API call. Defaults to '500'.
+  --max-tokens <number>          Maximum completion tokens to use per API call. Defaults to '500'.
   --max-characters <number>      Maximum characters for the generated text. Defaults to '155'.
   --overwrite                    Overwrites existing meta descriptions. Defaults to false.
   --publish                      Publish stories after updating. Defaults to false.
@@ -154,7 +154,8 @@ const openai = new OpenAI({
 })
 
 // Generation function
-let totalUsedTokens = 0
+let totalUsedPromptTokens = 0
+let totalUsedCompletionTokens = 0
 const generateMetaDescription = async (text) => {
 	const response = await openai.chat.completions.create({
 		model: model,
@@ -185,7 +186,8 @@ const generateMetaDescription = async (text) => {
 		max_completion_tokens: maxTokens,
 	})
 
-	totalUsedTokens += response.usage.total_tokens
+	totalUsedPromptTokens += response.usage.prompt_tokens
+	totalUsedCompletionTokens += response.usage.completion_tokens
 
 	return response.choices[0].message.content
 }
@@ -289,7 +291,8 @@ console.log(`Processing stories...`)
 const storyContent = []
 for (const story of stories) {
 	verboseLog('')
-	verboseLog(`Slug "${story.full_slug}" / Name "${story.name}"`)
+	verboseLog(`Slug "${story.full_slug}"`)
+	verboseLog(`Name "${story.name}"`)
 	verboseLog(`==============================`)
 
 	const existingValue = lodash.get(story.content, targetField)
@@ -353,6 +356,12 @@ for (const story of stories) {
 const endTime = performance.now()
 
 console.log('')
+console.log('Result')
+console.log('======')
 console.log(`Process successfully finished in ${Math.round((endTime - startTime) / 1000)} seconds.`)
-console.log(`Total used OpenAI tokens: ${totalUsedTokens}`)
+console.log('')
+console.log(`Used OpenAI tokens:`)
+console.log(`- Prompt/Input: ${totalUsedPromptTokens}`)
+console.log(`- Completion/Output: ${totalUsedCompletionTokens}`)
+console.log(`- Total: ${totalUsedPromptTokens + totalUsedCompletionTokens}`)
 process.exit(0)
