@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
+
 import minimist from 'minimist'
 import StoryblokClient from 'storyblok-js-client'
 import { performance } from 'perf_hooks'

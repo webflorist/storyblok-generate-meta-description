@@ -4,7 +4,7 @@
 	"description": "npx CLI tool to automatically generate meta descriptions of stories of a Storyblok space using OpenAI API.",
 	"scripts": {
 		"upgrade": "npx npm-check-updates -i -u --install never && pnpm install",
-		"lint:js": "eslint --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .lintignore .",
+		"lint:js": "eslint --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts .",
 		"lintfix:js": "pnpm lint:js --fix",
 		"lint:prettier": "prettier --ignore-path ./.lintignore --check .",
 		"lintfix:prettier": "prettier --ignore-path ./.lintignore --write --list-different .",
@@ -36,18 +36,21 @@
 	},
 	"homepage": "https://github.com/webflorist/storyblok-generate-meta-description#readme",
 	"devDependencies": {
-		"eslint": "^9.17.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-prettier": "^5.2.1",
-		"prettier": "^3.4.2"
+		"@eslint/eslintrc": "^3.3.0",
+		"@eslint/js": "^9.22.0",
+		"eslint": "^9.22.0",
+		"eslint-config-prettier": "^10.1.1",
+		"eslint-plugin-prettier": "^5.2.3",
+		"globals": "^16.0.0",
+		"prettier": "^3.5.3"
 	},
 	"dependencies": {
-		"@dotenvx/dotenvx": "^1.30.1",
+		"@dotenvx/dotenvx": "^1.38.4",
 		"@storyblok/richtext": "^3.0.2",
 		"html-to-text": "^9.0.5",
 		"lodash": "^4.17.21",
 		"minimist": "^1.2.8",
-		"openai": "^4.76.3",
-		"storyblok-js-client": "^6.10.3"
+		"openai": "^4.86.2",
+		"storyblok-js-client": "^6.10.9"
 	}
 }
