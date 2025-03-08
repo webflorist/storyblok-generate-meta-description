@@ -65,7 +65,7 @@ Call `npx storyblok-generate-meta-description` with the following options:
 --max-characters <number>      Maximum characters for the generated text. Defaults to '155'.
 --overwrite                    Overwrites existing meta descriptions. Defaults to false.
 --publish                      Publish stories after updating. Defaults to false.
-                               WARNING: May publish previously unpublished stories.
+                               Will not publish stories, that have unpublished changes or are not published.
 --dry-run                      Only display the changes instead of performing them. Defaults to false.
 --verbose (<level>)            Show detailed output for every processed story.
                                Optionally, you can specify a level of verbosity:

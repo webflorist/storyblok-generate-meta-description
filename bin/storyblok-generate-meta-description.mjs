@@ -50,7 +50,7 @@ OPTIONS
   --max-characters <number>      Maximum characters for the generated text. Defaults to '155'.
   --overwrite                    Overwrites existing meta descriptions. Defaults to false.
   --publish                      Publish stories after updating. Defaults to false.
-                                 WARNING: May publish previously unpublished stories.
+                                 Will not publish stories, that have unpublished changes or are not published.
   --dry-run                      Only display the changes instead of performing them. Defaults to false.
   --verbose (<level>)            Show detailed output for every processed story.
                                  Optionally, you can specify a level of verbosity:
@@ -349,12 +349,20 @@ for (const story of stories) {
 
 	lodash.set(story.content, targetField, generatedDescription)
 
+	let publish = args.publish
+	if (story.unpublished_changes || !story.published) {
+		publish = false
+	}
+
 	await StoryblokMAPI.put(`spaces/${spaceId}/stories/${story.id}`, {
 		story: story,
-		...(args.publish ? { publish: 1 } : {}),
+		...(publish ? { publish: 1 } : {}),
 	})
 
-	verboseLog('Story successfully updated.')
+	verboseLog(`Story successfully updated${publish ? ' and published' : ''}.`)
+	if (args.publish && !publish) {
+		verboseLog(`Story not published, since it is unpublished or has unpublished changes.`)
+	}
 }
 
 const endTime = performance.now()
