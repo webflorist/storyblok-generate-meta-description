@@ -293,6 +293,7 @@ console.log('')
 console.log(`Processing stories...`)
 const storyContent = []
 for (const story of stories) {
+	storyContent.length = 0
 	verboseLog('')
 	verboseLog(`Slug "${story.full_slug}"`)
 	verboseLog(`Name "${story.name}"`)
