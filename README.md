@@ -67,7 +67,10 @@ Call `npx storyblok-generate-meta-description` with the following options:
 --publish                      Publish stories after updating. Defaults to false.
                                WARNING: May publish previously unpublished stories.
 --dry-run                      Only display the changes instead of performing them. Defaults to false.
---verbose                      Show detailed output for every processed story.
+--verbose (<level>)            Show detailed output for every processed story.
+                               Optionally, you can specify a level of verbosity:
+                               - '1': Show only the generated meta description.
+                               - '2': Show the parsed content and generated meta description (default).
 --help                         Show this help
 ```
 

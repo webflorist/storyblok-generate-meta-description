@@ -52,7 +52,10 @@ OPTIONS
   --publish                      Publish stories after updating. Defaults to false.
                                  WARNING: May publish previously unpublished stories.
   --dry-run                      Only display the changes instead of performing them. Defaults to false.
-  --verbose                      Show detailed output for every processed story.
+  --verbose (<level>)            Show detailed output for every processed story.
+                                 Optionally, you can specify a level of verbosity:
+                                 - '1': Show only the generated meta description.
+                                 - '2': Show the parsed content and generated meta description (default).
   --help                         Show this help
 
 MINIMAL EXAMPLE
@@ -104,7 +107,7 @@ if ('region' in args || process.env.STORYBLOK_REGION) {
 	}
 }
 
-const verbose = 'verbose' in args
+const verbose = args.verbose ? (args.verbose === true ? 2 : args.verbose) : 0
 
 if (!('openai-api-key' in args) && !process.env.OPENAI_API_KEY) {
 	console.log(
@@ -193,9 +196,9 @@ const generateMetaDescription = async (text) => {
 }
 
 // Write console.log, if verbose mode is enabled
-const verboseLog = (...args) => {
-	if (verbose) {
-		console.log(...args)
+function verboseLog(text, level = 1) {
+	if (verbose >= level) {
+		console.log(text)
 	}
 }
 
@@ -322,10 +325,10 @@ for (const story of stories) {
 
 	const storyContentString = storyContent.join('\n\n')
 
-	verboseLog('')
-	verboseLog('Parsed content:')
-	verboseLog('---------------')
-	verboseLog(storyContentString)
+	verboseLog('', 2)
+	verboseLog('Parsed content:', 2)
+	verboseLog('---------------', 2)
+	verboseLog(storyContentString, 2)
 
 	const generatedDescription = await generateMetaDescription(storyContent.join('\n\n'))
 
