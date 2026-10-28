@@ -262,7 +262,7 @@ const parseContentNode = (node) => {
 				switch (fieldType) {
 					case 'text':
 					case 'textarea':
-						if (subNode.length > 0) {
+						if (subNode.length > 0 && key !== targetField) {
 							storyContent.push(subNode)
 						}
 						break
