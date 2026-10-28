@@ -6,10 +6,8 @@ import { performance } from 'perf_hooks'
 import dotenvx from '@dotenvx/dotenvx'
 import OpenAI from 'openai'
 import lodash from 'lodash'
-import { richTextResolver } from '@storyblok/richtext'
+import { renderRichText } from '@storyblok/richtext'
 import { convert as htmlToText } from 'html-to-text'
-
-const { render: renderRichText } = richTextResolver()
 
 const startTime = performance.now()
 
