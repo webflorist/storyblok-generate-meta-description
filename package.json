@@ -36,21 +36,21 @@
 	},
 	"homepage": "https://github.com/webflorist/storyblok-generate-meta-description#readme",
 	"devDependencies": {
-		"@eslint/eslintrc": "^3.3.0",
-		"@eslint/js": "^9.22.0",
-		"eslint": "^9.22.0",
-		"eslint-config-prettier": "^10.1.1",
-		"eslint-plugin-prettier": "^5.2.3",
-		"globals": "^16.0.0",
-		"prettier": "^3.5.3"
+		"@eslint/eslintrc": "^3.3.7",
+		"@eslint/js": "^10.0.1",
+		"eslint": "^10.13.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-prettier": "^5.5.7",
+		"globals": "^17.13.0",
+		"prettier": "^3.9.10"
 	},
 	"dependencies": {
-		"@dotenvx/dotenvx": "^1.38.4",
-		"@storyblok/richtext": "^3.0.2",
-		"html-to-text": "^9.0.5",
-		"lodash": "^4.17.21",
+		"@dotenvx/dotenvx": "^2.38.2",
+		"@storyblok/richtext": "^5.3.3",
+		"html-to-text": "^10.0.1",
+		"lodash": "^4.18.1",
 		"minimist": "^1.2.8",
-		"openai": "^4.86.2",
-		"storyblok-js-client": "^6.10.9"
+		"openai": "^7.43.0",
+		"storyblok-js-client": "^7.8.1"
 	}
 }
