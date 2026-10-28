@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"description": "npx CLI tool to automatically generate meta descriptions of stories of a Storyblok space using OpenAI API.",
 	"scripts": {
-		"upgrade": "npx npm-check-updates -i -u --install never && pnpm install",
+		"upgrade-packages": "pnpm dlx npm-check-updates --interactive --upgrade --root --install never --cooldown 2",
 		"lint:js": "eslint --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts .",
 		"lintfix:js": "pnpm lint:js --fix",
 		"lint:prettier": "prettier --ignore-path ./.lintignore --check .",
